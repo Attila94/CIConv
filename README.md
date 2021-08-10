@@ -33,7 +33,7 @@ See `resnet.py` and `vgg.py` for examples.
 
 Shapenet Illuminants is used in the synthetic classification experiment. The images are rendered from a subset of the [ShapeNet](https://shapenet.org) dataset using the physically based renderer [Mitsuba](https://www.mitsuba-renderer.org). The scene is illuminated by a point light modeled as a black-body radiator with temperatures ranging between *[1900, 20000] K* and an ambient light source. The training set contains 1,000 samples for each of the 10 object classes recorded under "normal" lighting conditions (*T = 6500 K*). Multiple test sets with 300 samples per class are rendered for a variety of light source intensities and colors.
 
-![shapenet_illuminants](/Users/attilalengyel/phd/projects/01-zeroshot_da/01_code/official/CIConv/images/shapenet_illuminants.png)
+![shapenet_illuminants](images/shapenet_illuminants.png)
 
 #### Common Objects Day and Night
 
@@ -41,7 +41,7 @@ Shapenet Illuminants is used in the synthetic classification experiment. The ima
 
 Common Objects Day and Night (CODaN) is a natural day-night image classification dataset. More information can be found on the separate Github repository: https://github.com/Attila94/CODaN.
 
-![codan](/Users/attilalengyel/phd/projects/01-zeroshot_da/01_code/official/CIConv/images/codan.gif)
+![codan](images/codan.gif)
 
 ### Experiments
 
@@ -55,7 +55,7 @@ python train.py --root 'path/to/shapenet_illuminants' --hflip --seed 0 --invaria
 
 This will train a ResNet-18 with the 'W' color invariant from scratch and evaluate on all test sets.
 
-![shapenet_illuminants_results](/Users/attilalengyel/phd/projects/01-zeroshot_da/01_code/official/CIConv/images/shapenet_illuminants_results.png)
+![shapenet_illuminants_results](images/shapenet_illuminants_results.png)
 
 Classification  accuracy  of  ResNet-18  with  various  color  invariants. RGB (not invariant) performance degrades when illumination conditions differ between train and test set, while color invariants remain more stable. *W* performs best overall.
 
