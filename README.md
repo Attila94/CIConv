@@ -2,6 +2,8 @@
 
 [[arXiv link coming soon]()] - ICCV 2021 Oral paper, by [Attila Lengyel](https://attila94.github.io), [Sourav Garg](https://staff.qut.edu.au/staff/s.garg), [Michael Milford](https://research.qut.edu.au/qcr/Our%20people/michael-milford/) and [Jan van Gemert](http://jvgemert.github.io/index.html).
 
+[[supplementary material](supplementary_material.pdf)]
+
 This repository contains the PyTorch implementation of Color Invariant Convolutions and all experiments and datasets described in the paper.
 
 ## Abstract
