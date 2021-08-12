@@ -1,8 +1,6 @@
 # Zero-Shot Domain Adaptation with a Physics Prior
 
-[[arXiv link coming soon]()] - ICCV 2021 Oral paper, by [Attila Lengyel](https://attila94.github.io), [Sourav Garg](https://staff.qut.edu.au/staff/s.garg), [Michael Milford](https://research.qut.edu.au/qcr/Our%20people/michael-milford/) and [Jan van Gemert](http://jvgemert.github.io/index.html).
-
-[[supplementary material](supplementary_material.pdf)]
+[[arXiv](https://arxiv.org/abs/2108.05137)] [[sup. material](supplementary_material.pdf)] - ICCV 2021 Oral paper, by [Attila Lengyel](https://attila94.github.io), [Sourav Garg](https://staff.qut.edu.au/staff/s.garg), [Michael Milford](https://research.qut.edu.au/qcr/Our%20people/michael-milford/) and [Jan van Gemert](http://jvgemert.github.io/index.html).
 
 This repository contains the PyTorch implementation of Color Invariant Convolutions and all experiments and datasets described in the paper.
 
@@ -111,13 +109,13 @@ TODO
 If you find this repository useful for your work, please cite as follows:
 
 ```
-@article{lengyel2021zeroshot,
-  title={Zero-Shot Domain Adaptation with a Physics Prior},
-  author={Attila Lengyel and Sourav Garg and Michael Milford and Jan C. van Gemert},
-  year={2021},
-  eprint={TBD},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV}
+@misc{lengyel2021zeroshot,
+      title={Zero-Shot Domain Adaptation with a Physics Prior}, 
+      author={Attila Lengyel and Sourav Garg and Michael Milford and Jan C. van Gemert},
+      year={2021},
+      eprint={2108.05137},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 ```
 
