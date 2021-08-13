@@ -102,15 +102,15 @@ This will train a ResNet-18 with the 'W' color invariant from scratch and evalua
 
 #### 4. Visual place recognition
 
-1. Navigate to `experiments/4_visual_place_recognition/cnnimageretrieval-pytorch/`.
-
-2. Setup conda environment
+1. Setup conda environment
 
    ```bash
    conda create -n ciconv python=3.9 mamba -c conda-forge
    conda activate ciconv
    mamba install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 scikit-image -c pytorch
    ```
+2. Navigate to `experiments/4_visual_place_recognition/cnnimageretrieval-pytorch/`.
+
 3. Run
 
    ```bash
