@@ -104,16 +104,23 @@ This will train a ResNet-18 with the 'W' color invariant from scratch and evalua
 
 1. Navigate to `experiments/4_visual_place_recognition/cnnimageretrieval-pytorch/`.
 
-2. Run
+2. Setup conda environment
+
+   ```bash
+   conda create -n ciconv python=3.9 mamba -c conda-forge
+   conda activate ciconv
+   mamba install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 scikit-image -c pytorch
+   ```
+3. Run
 
    ```bash
    git submodule update --init # download a fork of cnnimageretrieval-pytorch
    sh cirtorch/utils/setup_tests.sh # download datasets and pre-trained models 
    python3 -m cirtorch.examples.test --network-path data/networks/retrieval-SfM-120k_w_resnet101_gem/model.path.tar --multiscale '[1, 1/2**(1/2), 1/2]' --datasets '247tokyo1k' --whitening 'retrieval-SfM-120k'
    ```
-3. Use `--network-path retrievalSfM120k-resnet101-gem` to compare against the vanilla method (without using the color invariant trained ResNet101).
+4. Use `--network-path retrievalSfM120k-resnet101-gem` to compare against the vanilla method (without using the color invariant trained ResNet101).
 
-4. Use `--datasets 'gp_dl_nr'` to test on the GardensPointWalking dataset. 
+5. Use `--datasets 'gp_dl_nr'` to test on the GardensPointWalking dataset. 
 
 **Selected results from the paper:**
 
