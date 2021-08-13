@@ -1,0 +1,3 @@
+[submodule "experiments/4_visual_place_recognition/cnnimageretrieval-pytorch"]
+	path = experiments/4_visual_place_recognition/cnnimageretrieval-pytorch
+	url = git@github.com:Attila94/cnnimageretrieval-pytorch.git
