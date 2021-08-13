@@ -102,7 +102,25 @@ This will train a ResNet-18 with the 'W' color invariant from scratch and evalua
 
 #### 4. Visual place recognition
 
-TODO
+1. Navigate to `experiments/4_visual_place_recognition/cnnimageretrieval-pytorch/`.
+
+2. Run
+
+   ```bash
+   git submodule update --init # download a fork of cnnimageretrieval-pytorch
+   sh cirtorch/utils/setup_tests.sh # download datasets and pre-trained models 
+   python3 -m cirtorch.examples.test --network-path data/networks/retrieval-SfM-120k_w_resnet101_gem/model.path.tar --multiscale '[1, 1/2**(1/2), 1/2]' --datasets '247tokyo1k' --whitening 'retrieval-SfM-120k'
+   ```
+3. Use `--network-path retrievalSfM120k-resnet101-gem` to compare against the vanilla method (without using the color invariant trained ResNet101).
+
+4. Use `--datasets 'gp_dl_nr'` to test on the GardensPointWalking dataset. 
+
+**Selected results from the paper:**
+
+| Method                   | Tokyo 24/7 (mAP) |
+| ------------------------ | ---------------- |
+| ResNet101 GeM [baseline] | 85.0             |
+| *W*-ResNet101 GeM [ours] | **88.3**         |
 
 ## Citation
 
