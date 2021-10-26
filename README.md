@@ -29,7 +29,7 @@ See `resnet.py` and `vgg.py` for examples.
 
 #### Shapenet Illuminants
 
-[[Download link](https://data.4tu.nl/account/articles/15141273)]
+[[Download link](https://data.4tu.nl/articles/dataset/Shapenet_Illuminants_-_dataset_from_Zero-Shot_Day-Night_Domain_Adaptation_with_a_Physics_Prior_/15141273)]
 
 Shapenet Illuminants is used in the synthetic classification experiment. The images are rendered from a subset of the [ShapeNet](https://shapenet.org) dataset using the physically based renderer [Mitsuba](https://www.mitsuba-renderer.org). The scene is illuminated by a point light modeled as a black-body radiator with temperatures ranging between *[1900, 20000] K* and an ambient light source. The training set contains 1,000 samples for each of the 10 object classes recorded under "normal" lighting conditions (*T = 6500 K*). Multiple test sets with 300 samples per class are rendered for a variety of light source intensities and colors.
 
