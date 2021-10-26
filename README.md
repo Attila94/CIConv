@@ -47,7 +47,7 @@ Common Objects Day and Night (CODaN) is a natural day-night image classification
 
 #### 1. Synthetic classification
 
-1. Download [[link](https://data.4tu.nl/account/articles/15141273)] and unpack the Shapenet Illuminants dataset.
+1. Download [[link](https://data.4tu.nl/articles/dataset/Shapenet_Illuminants_-_dataset_from_Zero-Shot_Day-Night_Domain_Adaptation_with_a_Physics_Prior_/15141273)] and unpack the Shapenet Illuminants dataset.
 2. In your local CIConv clone navigate to `experiments/1_synthetic_classification` and run
 ```bash
 python train.py --root 'path/to/shapenet_illuminants' --hflip --seed 0 --invariant 'W'
