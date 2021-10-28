@@ -98,20 +98,16 @@ def main(args):
                                                           saturation=args.jitter,
                                                           hue=args.jitter),
                                    transforms.RandomRotation(args.rr, resample=3),
-                                   transforms.ToTensor(),
-                                   preproc.norm()])
-    tr_test = transforms.Compose([transforms.ToTensor(),
-                                  preproc.norm()])
+                                   transforms.ToTensor()])
+    tr_test = transforms.Compose([transforms.ToTensor()])
     # Add custom preprocessing function
     if args.preproc:
         if args.preproc == 'luminance':
             tr_train = transforms.Compose([tr_train, transforms.Grayscale(num_output_channels=3)])
             tr_test = transforms.Compose([tr_test, transforms.Grayscale(num_output_channels=3)])
         else:
-            tr_train = transforms.Compose([tr_train, getattr(preproc, args.preproc)(),
-                                           preproc.norm()])
-            tr_test = transforms.Compose([tr_test, getattr(preproc, args.preproc)(),
-                                          preproc.norm()])
+            tr_train = transforms.Compose([tr_train, getattr(preproc, args.preproc)()])
+            tr_test = transforms.Compose([tr_test, getattr(preproc, args.preproc)()])
     # Add normalization for RGB input
     if not args.invariant and not args.preproc:
         tr_train = transforms.Compose([tr_train,transforms.Normalize((0.485, 0.456, 0.406),(0.229, 0.224, 0.225))])
