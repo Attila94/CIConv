@@ -6,7 +6,7 @@ import numpy as np
 from torchvision.datasets.vision import VisionDataset
 
 class ShapeNetIlluminants(VisionDataset):
-    """`ShapeNet Illuminants <https://github.com/Attila94/CODaN>`_ Dataset.
+    """`ShapeNet Illuminants Dataset.
 
     Args:
         root (string, optional): Location of the downloaded dataset.
