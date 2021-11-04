@@ -6,14 +6,13 @@ import numpy as np
 from torchvision.datasets.vision import VisionDataset
 
 class ShapeNetIlluminants(VisionDataset):
-    """`CODaN <https://github.com/Attila94/CODaN>`_ Dataset.
+    """`ShapeNet Illuminants <https://github.com/Attila94/CODaN>`_ Dataset.
 
     Args:
-        data (string, optional): Location of the downloaded .tar.bz2 files.
+        root (string, optional): Location of the downloaded dataset.
         split (string, optional): Define which dataset split to use. Must be one of
-            'train', 'val', 'test_day', 'test_night'.
-        train (bool, optional): If True, creates dataset from training set, otherwise
-            creates from test set.
+            'train', 'val', 'test', 'test_2500K', 'test_4000K', 'test_6500K', 'test_12000K',
+            'test_20000K', 'test_dark', 'test_darkest', 'test_light', 'test_lightest'.
         transform (callable, optional): A function/transform that takes in an PIL image
             and returns a transformed version. E.g, ``transforms.RandomCrop``
         target_transform (callable, optional): A function/transform that takes in the
@@ -52,44 +51,44 @@ class ShapeNetIlluminants(VisionDataset):
         self.transform = transform
         self.target_transform = target_transform
 
-        # Unpack archives
-        if not os.path.isdir(os.path.join(root,split)):
+        # Check if dataset exists
+        if not os.path.isdir(root):
             raise AssertionError('Dataset missing.')
-            # # Join .tar.bz2 parts files for training split
-            # if split == 'train' and not os.path.exists(os.path.join(root,'codan_train.tar.bz2')):
-            #     with open(os.path.join(root,'codan_train.tar.bz2'), 'wb') as f_out:
-            #         for i in range(3):
-            #             fpath = os.path.join(root,'codan_train.tar.bz2.part{}'.format(i))
-            #             with open(fpath, 'rb') as f_in:
-            #                 f_out.write(f_in.read())
-            #             os.remove(fpath)
-            # # Unpack tar
-            # tarpath = os.path.join(root,'codan_'+split+'.tar.bz2')
-            # with tarfile.open(tarpath) as tar:
-            #     print('Unpacking {} split.'.format(split))
-            #     tar.extractall(path='./data')
-        # else:
-        #     print('Dataset {} split already extracted.'.format(split))
 
-        # loop through split directory, load all images in memory using PIL
-        if split in ['train','val']:
-            for i, c in enumerate(cls_dict.keys()):
-                imsar = np.load(os.path.join(split,c+'.npz'))['arr_0']
+        for i, c in enumerate(cls_dict.keys()):
+            # load train and val split from npy
+            if split in ['train','val']:
+                # create .npy files for train and val split for faster loading
+                if not os.path.exists(os.path.join(root,split,c+'.npy')):
+                    print('Generating .npy file for split {}, class {}.'.format(split, c))
+                    # get list of files in class dir
+                    ims = os.listdir(os.path.join(root,split,c))
+                    ims = [im for im in ims if '.png' in im]  # remove any system files
+                    assert len(ims) == nfiles, 'Found {} files instead of {}'.format(len(ims),nfiles)
+                    # load files into memory                    
+                    im_array = []
+                    for im in ims:
+                        img = Image.open(os.path.join(root,split,c,im)).convert('RGB')
+                        im_array.append(np.array(img.copy()))
+                        img.close()
+                    # save array as .npy
+                    im_array = np.asarray(im_array)
+                    np.save(os.path.join(root,split,c), im_array)
+
+                # load data from .npy files into memory
+                imsar = np.load(os.path.join(root,split,c+'.npy'))
                 for j in range(len(imsar)):
                     self.data.append(Image.fromarray(imsar[j]))
                     self.targets.append(i)
-        else:
-            for i, c in enumerate(cls_dict.keys()):
-                im_dir = os.path.join(root,split,c)
-                ims = os.listdir(im_dir)
+
+            # load test splits on the fly
+            else:
+                # get list of files in class dir
+                ims = os.listdir(os.path.join(root,split,c))
                 ims = [im for im in ims if '.png' in im]  # remove any system files
                 assert len(ims) == nfiles, 'Found {} files instead of {}'.format(len(ims),nfiles)
-
                 for im in ims:
-                    # img = Image.open(os.path.join(im_dir,im))
-                    # self.data.append(img.copy())
-                    # img.close()
-                    self.data.append(os.path.join(im_dir,im))
+                    self.data.append(os.path.join(os.path.join(root,split,c),im))
                     self.targets.append(i)
 
         print('Dataset {} split loaded.'.format(split))
@@ -102,8 +101,10 @@ class ShapeNetIlluminants(VisionDataset):
         Returns:
             tuple: (image, target) where target is index of the target class.
         """
+
         img, target = self.data[index], self.targets[index]
-        # Open image
+
+        # Load images on the go for test splits
         if self.split not in ['train','val']:
             img_tmp = Image.open(img).convert('RGB')
             img = img_tmp.copy()
