@@ -59,6 +59,8 @@ This will train a ResNet-18 with the 'W' color invariant from scratch and evalua
 
 Classification  accuracy  of  ResNet-18  with  various  color  invariants. RGB (not invariant) performance degrades when illumination conditions differ between train and test set, while color invariants remain more stable. *W* performs best overall.
 
+Trained model weights for the baseline and 'W' color invariant are available in the experiment subdir.
+
 #### 2. CODaN classification
 
 1. Download the Common Objects Day and Night (CODaN) dataset from https://github.com/Attila94/CODaN.
@@ -78,6 +80,8 @@ This will train a ResNet-18 with the 'W' color invariant from scratch and evalua
 | *C*       | 78.04 +- 1.08     | 53.44 +- 1.28     |
 | *N*       | 77.44 +- 0.00     | 52.03 +- 0.27     |
 | *H*       | 75.20 +- 0.56     | 50.52 +- 1.34     |
+
+Trained model weights for the baseline and 'W' color invariant are available in the experiment subdir.
 
 #### 3. Semantic segmentation
 
@@ -99,6 +103,8 @@ This will train a ResNet-18 with the 'W' color invariant from scratch and evalua
 | -------------------- | ------------------------ | ------------------ |
 | RefineNet [baseline] | 34.1                     | 30.6               |
 | *W*-RefineNet [ours] | **41.6**                 | **34.5**           |
+
+Trained model weights for the baseline and 'W' color invariant are available [here](https://gitlab.tudelft.nl/attilalengyel/ciconv/-/tree/master/experiments/3_segmentation).
 
 #### 4. Visual place recognition
 
