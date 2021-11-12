@@ -1,4 +1,4 @@
-# Zero-Shot Domain Adaptation with a Physics Prior
+# Zero-Shot Day-Night Domain Adaptation with a Physics Prior
 
 [[arXiv](https://arxiv.org/abs/2108.05137)] [[sup. material](supplementary_material.pdf)] - ICCV 2021 Oral paper, by [Attila Lengyel](https://attila94.github.io), [Sourav Garg](https://staff.qut.edu.au/staff/s.garg), [Michael Milford](https://research.qut.edu.au/qcr/Our%20people/michael-milford/) and [Jan van Gemert](http://jvgemert.github.io/index.html).
 
@@ -140,13 +140,13 @@ Trained model weights for the baseline and 'W' color invariant are available [he
 If you find this repository useful for your work, please cite as follows:
 
 ```
-@article{lengyel2021zeroshot,
-      title={Zero-Shot Domain Adaptation with a Physics Prior}, 
-      author={Attila Lengyel and Sourav Garg and Michael Milford and Jan C. van Gemert},
-      year={2021},
-      eprint={2108.05137},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@InProceedings{Lengyel_2021_ICCV,
+    author    = {Lengyel, Attila and Garg, Sourav and Milford, Michael and van Gemert, Jan C.},
+    title     = {Zero-Shot Day-Night Domain Adaptation With a Physics Prior},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2021},
+    pages     = {4399-4409}
 }
 ```
 
