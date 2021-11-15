@@ -25,18 +25,18 @@ def main(args):
 
     # Load dataset
     cs_path = '/tudelft.net/staff-bulk/ewi/insy/CV-DataSets/Cityscapes/'
-    nd_path = '/tudelft.net/staff-bulk/ewi/insy/VisionLab/attilalengyel/datasets/NighttimeDrivingTest/'
+    nd_path = './NighttimeDrivingTest/'
     dz_path = '/tudelft.net/staff-bulk/ewi/insy/VisionLab/attilalengyel/datasets/Dark_Zurich_val_anon/'
-    valset = CityscapesExt(cs_path, split='val', target_type='semantic', transforms=test_trans)
-    testset_day = CityscapesExt(cs_path, split='test', target_type='semantic', transforms=test_trans)
+#    valset = CityscapesExt(cs_path, split='val', target_type='semantic', transforms=test_trans)
+#    testset_day = CityscapesExt(cs_path, split='test', target_type='semantic', transforms=test_trans)
     testset_nd = NighttimeDrivingDataset(nd_path, transforms=test_trans)
-    testset_dz = DarkZurichDataset(dz_path, transforms=test_trans)
+#    testset_dz = DarkZurichDataset(dz_path, transforms=test_trans)
 
     dataloaders = {}
-    dataloaders['val'] = torch.utils.data.DataLoader(valset, batch_size=args.batch_size, shuffle=False, pin_memory=True, num_workers=args.workers)
-    dataloaders['test_day'] = torch.utils.data.DataLoader(testset_day, batch_size=args.batch_size, shuffle=False, pin_memory=True, num_workers=args.workers)
+#    dataloaders['val'] = torch.utils.data.DataLoader(valset, batch_size=args.batch_size, shuffle=False, pin_memory=True, num_workers=args.workers)
+#    dataloaders['test_day'] = torch.utils.data.DataLoader(testset_day, batch_size=args.batch_size, shuffle=False, pin_memory=True, num_workers=args.workers)
     dataloaders['test_nd'] = torch.utils.data.DataLoader(testset_nd, batch_size=args.batch_size, shuffle=False, pin_memory=True, num_workers=args.workers)
-    dataloaders['test_dz'] = torch.utils.data.DataLoader(testset_dz, batch_size=args.batch_size, shuffle=False, pin_memory=True, num_workers=args.workers)
+#    dataloaders['test_dz'] = torch.utils.data.DataLoader(testset_dz, batch_size=args.batch_size, shuffle=False, pin_memory=True, num_workers=args.workers)
 
     num_classes = len(CityscapesExt.validClasses)
 
@@ -65,18 +65,18 @@ def main(args):
     # print(model)
 
     # Validate
-    print('--- Validation - daytime ---')
-    val_acc_cs, val_loss_cs, miou_cs, confmat_cs, iousum_cs = evaluate(dataloaders['val'],
-        model, criterion, 0, CityscapesExt.classLabels, CityscapesExt.validClasses,
-        void=CityscapesExt.voidClass, maskColors=CityscapesExt.maskColors, mean=mean, std=std)
+ #   print('--- Validation - daytime ---')
+ #   val_acc_cs, val_loss_cs, miou_cs, confmat_cs, iousum_cs = evaluate(dataloaders['val'],
+ #       model, criterion, 0, CityscapesExt.classLabels, CityscapesExt.validClasses,
+ #       void=CityscapesExt.voidClass, maskColors=CityscapesExt.maskColors, mean=mean, std=std)
     print('--- Validation - Nighttime Driving ---')
     test_acc_nd, test_loss_nd, miou_nd, confmat_nd, iousum_nd = evaluate(dataloaders['test_nd'],
         model, criterion, 0, CityscapesExt.classLabels, CityscapesExt.validClasses,
         void=CityscapesExt.voidClass, maskColors=CityscapesExt.maskColors, mean=mean, std=std)
-    print('--- Validation - Dark Zurich ---')
-    test_acc_dz, test_loss_dz, miou_dz, confmat_dz, iousum_dz = evaluate(dataloaders['test_dz'],
-        model, criterion, 0, CityscapesExt.classLabels, CityscapesExt.validClasses,
-        void=CityscapesExt.voidClass, maskColors=CityscapesExt.maskColors, mean=mean, std=std)
+ #   print('--- Validation - Dark Zurich ---')
+ #   test_acc_dz, test_loss_dz, miou_dz, confmat_dz, iousum_dz = evaluate(dataloaders['test_dz'],
+ #       model, criterion, 0, CityscapesExt.classLabels, CityscapesExt.validClasses,
+ #       void=CityscapesExt.voidClass, maskColors=CityscapesExt.maskColors, mean=mean, std=std)
 
 
 if __name__ == '__main__':

@@ -87,6 +87,8 @@ Trained model weights for the baseline and 'W' color invariant are available in 
 
 1. Download and unpack the following public datasets: [Cityscapes](https://www.cityscapes-dataset.com), [Nighttime Driving](http://data.vision.ee.ethz.ch/daid/NighttimeDriving/NighttimeDrivingTest.zip), [Dark Zurich](https://data.vision.ee.ethz.ch/csakarid/shared/GCMA_UIoU/Dark_Zurich_val_anon.zip).
 
+    > **NOTE:** Corrected labels for Nighttime Driving (used for experiments) provided [here](experiments/3_segmentation/night.zip). See [this issue](https://github.com/Attila94/CIConv/issues/3) for more details.
+
 2. In your local CIConv clone navigate to `experiments/3_segmentation`.
 
 3. Set the proper dataset locations in `train.py`.
@@ -101,7 +103,7 @@ Trained model weights for the baseline and 'W' color invariant are available in 
 
 | Method               | Nighttime Driving (mIoU) | Dark Zurich (mIoU) |
 | -------------------- | ------------------------ | ------------------ |
-| RefineNet [baseline] | 34.1                     | 30.6               |
+| RefineNet [baseline] | 33.2 ~~34.1~~            | 30.6               |
 | *W*-RefineNet [ours] | **41.6**                 | **34.5**           |
 
 Trained model weights for the baseline and 'W' color invariant are available [here](https://gitlab.tudelft.nl/attilalengyel/ciconv/-/tree/master/experiments/3_segmentation).
