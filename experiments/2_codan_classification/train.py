@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torchvision import transforms
-from torchsummary import summary
+from torchinfo import summary
 
 from codan import CODaN
 import resnet
@@ -87,7 +87,7 @@ def main(args):
         print(r)
     if args.cuda:
         model.cuda()
-    summary(model, (3,224,224))
+#    summary(model, (3,224,224))
 
     # Transformations
     p_hflip = 0.5 if args.hflip else 0

@@ -23,7 +23,7 @@ class CODaN(VisionDataset):
     """
 
 
-    def __init__(self, root='./data', split='train', transform=None, target_transform=None):
+    def __init__(self, root='./', split='train', transform=None, target_transform=None):
 
         super(CODaN, self).__init__(root, transform, target_transform)
 
@@ -34,28 +34,30 @@ class CODaN(VisionDataset):
         self.split = split  # dataset split
         self.data = []
         self.targets = []
+        self.transform = transform
+        self.target_transform = target_transform
 
         # Unpack archives
-        if not os.path.isdir(os.path.join(root,split)):
+        if not os.path.isdir(os.path.join(root,'data',split)):
             # Join .tar.bz2 parts files for training split
-            if split == 'train' and not os.path.exists(os.path.join(root,'codan_train.tar.bz2')):
-                with open(os.path.join(root,'codan_train.tar.bz2'), 'wb') as f_out:
+            if split == 'train' and not os.path.exists(os.path.join(root,'data','codan_train.tar.bz2')):
+                with open(os.path.join(root,'data','codan_train.tar.bz2'), 'wb') as f_out:
                     for i in range(3):
-                        fpath = os.path.join(root,'codan_train.tar.bz2.part{}'.format(i))
+                        fpath = os.path.join(root,'data','codan_train.tar.bz2.part{}'.format(i))
                         with open(fpath, 'rb') as f_in:
                             f_out.write(f_in.read())
                         os.remove(fpath)
             # Unpack tar
-            tarpath = os.path.join(root,'codan_'+split+'.tar.bz2')
+            tarpath = os.path.join(root,'data/codan_'+split+'.tar.bz2')
             with tarfile.open(tarpath) as tar:
                 print('Unpacking {} split.'.format(split))
-                tar.extractall(path='./data')
+                tar.extractall(path=os.path.join(root,'data'))
         else:
-            print('Dataset {} split already extracted.'.format(split))
+            print('Loading CODaN {} split...'.format(split))
 
         # loop through split directory, load all images in memory using PIL
         for i, c in enumerate(cls_list):
-            im_dir = os.path.join(root,split,c)
+            im_dir = os.path.join(root,'data',split,c)
             ims = os.listdir(im_dir)
             ims = [im for im in ims if '.jpg' in im or '.JPEG' in im] # remove any system files
             
@@ -75,7 +77,6 @@ class CODaN(VisionDataset):
             tuple: (image, target) where target is index of the target class.
         """
         img, target = self.data[index], self.targets[index]
-
         if self.transform is not None:
             img = self.transform(img)
 
