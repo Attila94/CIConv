@@ -87,7 +87,7 @@ def main(args):
         print(r)
     if args.cuda:
         model.cuda()
-#    summary(model, (3,224,224))
+    summary(model, (2,3,224,224))
 
     # Transformations
     p_hflip = 0.5 if args.hflip else 0
