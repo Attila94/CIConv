@@ -1,4 +1,4 @@
-# Zero-Shot Day-Night Domain Adaptation with a Physics Prior
+# CIConv - Zero-Shot Day-Night Domain Adaptation with a Physics Prior
 
 [[arXiv](https://arxiv.org/abs/2108.05137)] [[sup. material](supplementary_material.pdf)] - ICCV 2021 Oral paper, by [Attila Lengyel](https://attila94.github.io), [Sourav Garg](https://staff.qut.edu.au/staff/s.garg), [Michael Milford](https://research.qut.edu.au/qcr/Our%20people/michael-milford/) and [Jan van Gemert](http://jvgemert.github.io/index.html).
 
